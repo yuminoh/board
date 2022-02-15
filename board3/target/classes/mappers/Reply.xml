@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mapper.reply">
+<resultMap type="replyVO" id="replyResultMap">
+    <id column="replyno" property="replyno"/>
+    <result column="memberno"    property="memberno"/>
+    <result column="postno"    property="postno"/>
+    <result column="writer"    property="writer"/>
+    <result column="content"    property="content"/>
+    <result column="rdate"    property="rdate"/>
+</resultMap>
+
+	<select id="selectList" resultMap="replyResultMap">
+		select replyno, memberno, postno, rwriter, rcontent, pdate
+		from reply
+		where postno=#{postno}
+		order by replyno asc
+	</select>
+	
+	<insert id="insert" parameterType="replyVO">
+		insert into reply(memberno, postno, rwriter, rcontent, pdate)
+		values(#{memberno}, #{postno}, #{rwriter}, #{rcontent}, now())
+	</insert>
+	
+	<update id="update" parameterType="replyVO">
+		update reply
+		set rcontent=#{rcontent}
+		where replyno=#{replyno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from reply
+		where replyno=#{replyno}
+	</delete>
+	
+	<select id="read" parameterType="int" resultMap="replyResultMap">
+		select replyno, memberno, postno, rwriter, rcontent, pdate
+		from reply
+		where replyno=#{replyno}
+	</select>
+	
+</mapper>

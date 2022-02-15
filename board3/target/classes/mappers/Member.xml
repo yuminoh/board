@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mapper.member">
+<resultMap type="memberVO" id="memberResultMap">
+    <id column="memberno" property="memberno"/>
+    <result column="mname"    property="mname"/>
+    <result column="id"    property="id"/>
+    <result column="pw"      property="pw"/>
+</resultMap>
+
+	<select id="selectList" parameterType="map" resultMap="memberResultMap">
+		select memberno, mname, id, pw
+		from member
+		order by memberno asc
+	</select>
+
+	<insert id="insert" parameterType="memberVO">
+		insert into member(mname, id, pw)
+		values(#{mname}, #{id}, #{pw})
+	</insert>
+	
+	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
+		select memberno, mname, id, pw
+		from member
+		where memberno=#{memberno}
+	</select>
+	
+	<update id="update" parameterType="map">
+		update member
+   		<set>
+   			<if test="mname != null">mname=#{mname},</if>
+      		<if test="id != null">id=#{id},</if>
+      		<if test="pw != null">pw=#{pw},</if>
+    	</set>
+    	where memberno=#{memberno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from member
+		where memberno=#{memberno}
+	</delete>
+	
+	<select id="exist" parameterType="memberVO" resultMap="memberResultMap">
+		select memberno, mname, id, pw
+    	from member 
+    	where id=#{id} and pw=#{pw}
+	</select>
+</mapper>

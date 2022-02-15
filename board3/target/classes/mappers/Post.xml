@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mapper.post">
+<resultMap type="postVO" id="postResultMap">
+    <id column="postno" property="postno"/>
+    <result column="memberno"    property="memberno"/>
+    <result column="writer"    property="writer"/>
+    <result column="title"    property="title"/>
+    <result column="content"    property="content"/>
+    <result column="rdate"    property="rdate"/>
+</resultMap>
+
+	<select id="selectList" resultMap="postResultMap">
+		select postno, memberno, writer, title, content, rdate
+		from post
+		order by postno desc
+	</select>
+	
+	<insert id="insert" parameterType="postVO">
+		insert into post(memberno, writer, title, content, rdate)
+		values(#{memberno}, #{writer}, #{title}, #{content}, now())
+	</insert>
+	
+	<update id="update" parameterType="postVO">
+		update post
+		set title=#{title}, content=#{content}
+		where postno=#{postno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from post
+		where postno=#{postno}
+	</delete>
+	
+	<select id="selectOne" parameterType="int" resultMap="postResultMap">
+		select postno, memberno, writer, title, content, rdate
+		from post
+		where postno=#{postno}
+	</select>
+	
+	<select id="listsp" resultMap="postResultMap">
+	<![CDATA[
+		select postno, memberno, writer, title, content, rdate
+		from post
+		order by postno desc
+		limit #{start}, #{pernum}
+	]]>
+	</select>
+	
+	<select id="count" resultType="Integer">
+		<![CDATA[
+			select count(*)
+			from post
+		]]>
+		<where>
+			<if test="word != null">
+			  title like concat('%',#{word},'%') or content like concat('%',#{word},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="listsps" resultMap="postResultMap">
+	<![CDATA[
+		select postno, memberno, writer, title, content, rdate
+		from post
+	]]> 
+		<where>
+		<if test="word != null">
+			title like concat('%',#{word},'%') or content like concat('%',#{word},'%')
+		</if>
+		</where>
+	<![CDATA[
+		order by postno desc
+		limit #{start}, #{pernum}
+	]]>
+	</select>
+	
+</mapper>
