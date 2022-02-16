@@ -24,14 +24,14 @@ public class MemberCont {
 	MemberServiceInter memberService;
 	private Logger logger = LoggerFactory.getLogger(MemberCont.class);
 	
-	@RequestMapping(value="/member/add.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board/member/add.do", method=RequestMethod.GET)
 	public ModelAndView insert() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/add");
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/add.do", method=RequestMethod.POST)
+	@RequestMapping(value="/board/member/add.do", method=RequestMethod.POST)
 	public ModelAndView insert(MemberVO memberVO) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = this.memberService.insert(memberVO);
@@ -43,7 +43,7 @@ public class MemberCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/update_read.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board/member/update_read.do", method=RequestMethod.GET)
 	public ModelAndView update_read(int memberno) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -54,7 +54,7 @@ public class MemberCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/update.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board/member/update.do", method=RequestMethod.GET)
 	public ModelAndView update(int memberno) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -65,7 +65,7 @@ public class MemberCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/update.do", method=RequestMethod.POST)
+	@RequestMapping(value="/board/member/update.do", method=RequestMethod.POST)
 	public ModelAndView update(MemberVO memberVO) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -82,14 +82,14 @@ public class MemberCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/login.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board/member/login.do", method=RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/login");
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/login.do", method=RequestMethod.POST)
+	@RequestMapping(value="/board/member/login.do", method=RequestMethod.POST)
 	public ModelAndView login(HttpSession session, MemberVO memberVO) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -113,7 +113,7 @@ public class MemberCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/board/member/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView logout(HttpSession session, MemberVO memberVO) {
 		ModelAndView mav = new ModelAndView();
 		String id="";
@@ -129,7 +129,7 @@ public class MemberCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/loginFail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board/member/loginFail.do", method=RequestMethod.GET)
 	public ModelAndView loginFail() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/loginFail");
