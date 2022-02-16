@@ -43,7 +43,7 @@ public class PostCont {
 	
 	private Logger logger = LoggerFactory.getLogger(PostCont.class);
 	
-	@RequestMapping(value="/board/post/add.do", method=RequestMethod.GET)
+	@RequestMapping(value="/post/add.do", method=RequestMethod.GET)
 	public ModelAndView insert(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String id = (String) session.getAttribute("id");
@@ -56,7 +56,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/add.do", method=RequestMethod.POST)
+	@RequestMapping(value="/post/add.do", method=RequestMethod.POST)
 	public ModelAndView insert(HttpSession session, PostVO postVO) {
 		ModelAndView mav = new ModelAndView();
 		session.getAttribute("login");
@@ -71,7 +71,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView selectList(Criteria criteria, @RequestParam(value="word", required=false, defaultValue="") String word) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -87,7 +87,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/delete.do", method=RequestMethod.GET)
+	@RequestMapping(value="/post/delete.do", method=RequestMethod.GET)
 	public ModelAndView delete_read(HttpSession session, int postno) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -97,7 +97,7 @@ public class PostCont {
 		String id = postVO.getWriter();
 		logger.info("{}", id);
 		if(sessionid == null) {
-			mav.setViewName("redirect:/member/login.do");
+			mav.setViewName("redirect:board//member/login.do");
 		} else if(!sessionid.equals(id)) {
 			mav.setViewName("post/deleteFail");
 		} else {
@@ -109,7 +109,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/delete.do", method=RequestMethod.POST)
+	@RequestMapping(value="/post/delete.do", method=RequestMethod.POST)
 	public ModelAndView delete(int postno) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = this.postService.delete(postno);
@@ -119,7 +119,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/deleteFail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/post/deleteFail.do", method=RequestMethod.GET)
 	public ModelAndView deleteFail() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("post/deleteFail");
@@ -127,7 +127,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/update.do", method=RequestMethod.GET)
+	@RequestMapping(value="/post/update.do", method=RequestMethod.GET)
 	public ModelAndView update_read(HttpSession session, int postno) {
 		ModelAndView mav = new ModelAndView();
 		session.getAttribute("login");
@@ -147,7 +147,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/update.do", method=RequestMethod.POST)
+	@RequestMapping(value="/post/update.do", method=RequestMethod.POST)
 	public ModelAndView update(PostVO postVO) {
 		ModelAndView mav = new ModelAndView();
 	
@@ -159,7 +159,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/updateFail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/post/updateFail.do", method=RequestMethod.GET)
 	public ModelAndView updateFail() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("post/updateFail");
@@ -167,7 +167,7 @@ public class PostCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/board/post/read.do", method=RequestMethod.GET)
+	@RequestMapping(value="/post/read.do", method=RequestMethod.GET)
 	public ModelAndView selectOne(int postno) {
 		ModelAndView mav = new ModelAndView();
 		PostVO postVO = this.postService.selectOne(postno);
@@ -180,7 +180,7 @@ public class PostCont {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/board/post/replylist.do",produces = "application/json", method = RequestMethod.GET)
+	@RequestMapping(value = "/post/replylist.do",produces = "application/json", method = RequestMethod.GET)
 	public String ajax_replylist(@RequestParam(value="postno")int postno, HttpSession session) {
 		
 		List<ReplyVO> replylist = this.postService.selectList(postno);
@@ -191,7 +191,7 @@ public class PostCont {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/board/post/reinsert.do",produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value="/post/reinsert.do",produces = "application/json", method=RequestMethod.POST)
 	public String insert(ReplyVO replyVO, HttpSession session){
 		
 		session.getAttribute("login");
@@ -225,7 +225,7 @@ public class PostCont {
 	*/
 	
 	@ResponseBody
-	@RequestMapping(value="/board/post/reupdate.do",produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value="/post/reupdate.do",produces = "application/json", method=RequestMethod.POST)
 	public String update(ReplyVO replyVO, HttpSession session){
 		
 		session.getAttribute("login");
@@ -243,7 +243,7 @@ public class PostCont {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/board/post/redelete.do", produces="application/json", method=RequestMethod.POST)
+	@RequestMapping(value="/post/redelete.do", produces="application/json", method=RequestMethod.POST)
 	public String replydelete(@RequestParam(value="replyno")int replyno, HttpSession session, ModelAndView mav) {
 		int cnt = postService.replydelete(replyno);
 		Gson gson = new Gson();

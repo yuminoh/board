@@ -25,7 +25,7 @@
     
     <interceptors>
         <interceptor>
-        	<mapping path="/board"/>
+        	<mapping path="/"/>
             <beans:ref bean="Interceptor"/>
         </interceptor>
     </interceptors>
