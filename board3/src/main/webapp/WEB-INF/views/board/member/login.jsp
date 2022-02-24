@@ -17,11 +17,11 @@
   
     <div class="form-floating">
       <input type="text" class="form-control" id="id" name="id" required="required">
-      <label for="floatingInput">아이디#</label>
+      <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="pw" name="pw" required="required">
-      <label for="floatingPassword">비밀번호#</label>
+      <label for="floatingPassword">비밀번호</label>
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign</button>
