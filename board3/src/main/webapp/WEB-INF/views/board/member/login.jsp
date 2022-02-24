@@ -17,7 +17,7 @@
   
     <div class="form-floating">
       <input type="text" class="form-control" id="id" name="id" required="required" placeholder="아이디">
-      <label for="floatingInput"></label>
+      <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="pw" name="pw" required="required" placeholder="비밀번호">
