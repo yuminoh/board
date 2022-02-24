@@ -16,11 +16,11 @@
 <main class="form-signin">
   
     <div class="form-floating">
-      <input type="text" class="form-control" id="id" name="id" required="required">
-      <label for="floatingInput">아이디</label>
+      <input type="text" class="form-control" id="id" name="id" required="required" placeholder="아이디">
+      <label for="floatingInput"></label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="pw" name="pw" required="required">
+      <input type="password" class="form-control" id="pw" name="pw" required="required" placeholder="비밀번호">
       <label for="floatingPassword">비밀번호</label>
     </div>
 
