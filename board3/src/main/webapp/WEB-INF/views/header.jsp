@@ -39,7 +39,7 @@
   <header class="py-3 mb-4 border-bottom">
     <div class="container d-flex flex-wrap justify-content-center">
      
-        <span class="fs-4"><strong>Board</strong></span>
+        <span class="fs-4"><strong>Board2</strong></span>
       </a>
     </div>
   </header>
